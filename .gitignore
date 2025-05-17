@@ -25,6 +25,6 @@ go.work.sum
 .env
 
 #database
-storage
+/storage
 
 /config
