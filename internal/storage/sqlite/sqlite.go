@@ -14,6 +14,12 @@ type Sqlite struct {
 }
 
 func New(cfg *config.Config) (*Sqlite, error) {
+	// Ensure the storage directory exists
+	dir := filepath.Dir(cfg.StoragePath)
+	if err := os.MkdirAll(dir, os.ModePerm); err != nil {
+		return nil, err
+	}
+	
 	db, err := sql.Open("sqlite3", cfg.StoragePath)
 	if err != nil {
 		return nil, err
